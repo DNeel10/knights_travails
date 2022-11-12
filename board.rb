@@ -31,10 +31,10 @@ end
 
 gameboard = Board.new
 puts "#{gameboard.display_board}"
-gameboard.place_knight([4,3])
+gameboard.place_knight
 puts "#{gameboard.display_board}"
 
-gameboard.knight_move([4,1])
+gameboard.knight_move([2,2])
 puts "#{gameboard.display_board}"
 
 
