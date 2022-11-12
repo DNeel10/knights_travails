@@ -23,7 +23,7 @@ class Knight
     
     move_list.each_with_index do |move, i|
       move.each do |pos|
-        move_list[i] = [] if pos < 0
+        move_list[i] = [] if pos.negative? || pos > 7
       end
     end
 
@@ -33,5 +33,5 @@ class Knight
 end
 knight = Knight.new
 puts "#{knight.position}"
-knight.build_move_tree
+knight.build_move_tree([5,6])
 p knight.possible_moves
