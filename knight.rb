@@ -10,7 +10,7 @@ class Knight
     
   end
 
-  def build_move_tree(root = @position, move_list = @possible_moves)
+  def build_move_list(root = @position, move_list = @possible_moves)
 
     move_list << [root[0] + 1, root[1] + 2]
     move_list << [root[0] + 2, root[1] + 1]
@@ -33,5 +33,5 @@ class Knight
 end
 knight = Knight.new
 puts "#{knight.position}"
-knight.build_move_tree([5,6])
+knight.build_move_list([5,6])
 p knight.possible_moves
