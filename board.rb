@@ -12,16 +12,17 @@ class Board
     while queue.any?
       current_pos = queue.shift
 
-      return build_path(pos, target, visited) if current_pos.pos == pos
-      visited << current_pos
+      return visited if current_pos.pos == pos
+      visited << current_pos unless visited.include?(current_pos)
 
 
       moves = possible_moves(current_pos.pos)
       moves.each do |move|
         queue << knight = Knight.new(move, current_pos) unless queue.include?(knight) || visited.include?(knight)
       end
+      puts "length: #{visited}"
     end
-    visited    
+
   end
 
   def possible_moves(pos = @knight.pos, moves = @knight.moves)
@@ -30,10 +31,10 @@ class Board
   end
 
   def build_path(pos, target, visited)
-    path = [target, visited.last.predecessor]
+    path = [target]
     
     until path.last == pos
-      path << path.last.predecessor
+
     end
   end
 
@@ -41,5 +42,5 @@ end
 
 board = Board.new
 
-puts "#{board.bfs([0,1], [3,3])}"
+board.bfs([0,1], [3,3])
 
