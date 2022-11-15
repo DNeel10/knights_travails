@@ -9,18 +9,19 @@ class Board
   def bfs(pos = @knight.pos, target)
     queue = [Knight.new(target)]
     visited = []
-    while queue.any?
-      current_pos = queue.shift
 
-      return visited if current_pos.pos == pos
-      visited << current_pos unless visited.include?(current_pos)
+    while queue
+      current = queue.shift
 
+      visited << current if visited.none? { |item| current == item}
 
-      moves = possible_moves(current_pos.pos)
+      return build_path(pos, target, visited) if current.pos == pos
+
+      moves = possible_moves(current.pos)
       moves.each do |move|
-        queue << knight = Knight.new(move, current_pos) unless queue.include?(knight) || visited.include?(knight)
+        knight = Knight.new(move, current)
+        queue << knight if queue.none? { |item| knight == item}
       end
-      puts "length: #{visited}"
     end
 
   end
@@ -31,16 +32,26 @@ class Board
   end
 
   def build_path(pos, target, visited)
-    path = [target]
-    
-    until path.last == pos
+
+    path = []
+    queue = []
+    queue.push(visited.last)
+
+    until path.last == target
+      current = queue.shift
+      path << current.pos
+      queue << current.predecessor unless current.predecessor.nil?
 
     end
+    puts "Congratulations - You made it in #{path.length} moves"
+    puts "your path: "
+    p path
+    path
   end
 
 end
 
 board = Board.new
 
-board.bfs([0,1], [3,3])
+board.bfs([0,1], [5,7])
 

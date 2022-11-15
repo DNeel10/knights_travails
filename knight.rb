@@ -8,6 +8,10 @@ class Knight
     @moves = [[-2, -1], [-2, 1], [2, -1], [2, 1], [1, -2], [1, 2], [-1, -2], [-1, 2]]
 
   end
+
+  def ==(other)
+    @pos == other.pos
+  end
 end
 
 # knight = Knight.new([5,7])
