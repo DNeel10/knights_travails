@@ -2,7 +2,7 @@
 
 # Node style class to stores information about a knight
 class Knight
-  attr_accessor :pos, :moves, :children, :predecessor
+  attr_accessor :pos, :moves, :predecessor
 
   def initialize(pos = [0, 1], predecessor = nil)
     @pos = pos
