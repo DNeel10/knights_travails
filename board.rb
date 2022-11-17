@@ -4,7 +4,10 @@ require_relative './knight'
 
 # Control the movement of the Knight class
 class Board
+  attr_accessor :board
+
   def initialize
+    @board = Array.new(8) { Array.new(8, nil) }
     @knight = Knight.new
   end
 
